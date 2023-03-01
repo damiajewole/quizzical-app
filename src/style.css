@@ -59,11 +59,11 @@ body{
 
 .question{
     color: #293264;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     /* border: 1px solid black; */
     padding: 5px;
-    margin: o;
-    text-align: left;
+    /* margin: ; */
+    text-align: center;
 }
 
 .answer{
