@@ -12,24 +12,26 @@ function App() {
   useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&category=11&difficulty=medium&type=multiple")
     .then(res => res.json())
-    
     .then(data => setQuizData(data))
-
   }, [])  
 
   function renderthis(){
     setShow(true)
   }
 
+  function calculateResult(childData){
+    console.log("results calculated")
+    console.log(childData)
+  }
+
   return (
     <div>
-      {/* {show ? <Quiz data={quizdata}/> : <Start onClick={renderthis} />} */}
       {show ? 
       <div className="quiz page">
         {quizdata.results.map((data) =>
-            <Questions data={data} key ={nanoid()}/>
+            <Questions data={data} key ={nanoid()} handleCallback={calculateResult}/>
         )}
-        <button className="btn ans">Check answers</button>
+        <button className="btn ans" >Check answers</button>
       </div>
       : 
       <Start onClick={renderthis} />} 

@@ -16,6 +16,19 @@ export default function Questions(props){
         setOptions(shuffle(options));
     }, [options]);
 
+    // function doThis(){
+    //     setSelect(true)
+    // }
+
+    //original, unchaged
+    // function chooseOption(event){
+    //     let chosenOption = event.currentTarget.id
+    //     setUserAnswer(prevAnswer => [
+    //         ...prevAnswer,
+    //         chosenOption
+    //     ]) 
+    // }
+
     function chooseOption(event){
         let chosenOption = event.currentTarget.id
         setUserAnswer(prevAnswer => [
@@ -28,7 +41,7 @@ export default function Questions(props){
             <h1 className='question'>{props.data.question.replace(/&quot;/g, '"')}</h1>
             <div className="answer">
                 {options.map((opt) =>
-                    <div className={(userAnswer == opt) ? "try yes": "try"} key ={nanoid()}  id={`${opt}`} onClick={chooseOption}>
+                    <div className={(userAnswer === opt) ? "try yes": "try"} key ={nanoid()}  id={`${opt}`} onClick={chooseOption}>
                         <p className="answer--value" >{opt.replace(/&quot;/g, '"')} </p>
                     </div>
                 )}
@@ -37,7 +50,6 @@ export default function Questions(props){
         </div>
     )
 }
-
 
 
 

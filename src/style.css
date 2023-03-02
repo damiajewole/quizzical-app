@@ -49,20 +49,17 @@ body{
     transform: scale(1.1) perspective(1px);
 }
 
-/**QUIZ**/
+/**QUESTION**/
 
 .quiz{
     background-image: url(../public/upper-blob.png), url(../public/small-bottom-blob.png);
     padding: 50px;
-    /* border: 1px solid black; */
 }
 
 .question{
     color: #293264;
     font-size: 1.3rem;
-    /* border: 1px solid black; */
     padding: 5px;
-    /* margin: ; */
     text-align: center;
 }
 
@@ -72,26 +69,47 @@ body{
     justify-content: center;
     align-items: center;
     gap: 25px;
-    /* border: 1px solid black */
+    /* border: 1px solid black; */
 }
 
 /* .answer:hover{
     background-color: aquamarine;
 } */
 
+.try{
+    /* border: 1.2px solid black; */
+    padding: 0;
+    margin: 0;
+    border: 0.8px solid #4D5B9E;
+    border-radius: 8px;
+    padding: 0 40px;
+}
+
+.try:hover{
+    background-color: #93D7A2;
+    border: transparent;
+}
+
 .answer--value{
+    color: #293264;
+    font-size: 0.9rem;
+    padding: 0;
+    margin: 12px;
+}
+
+/* .answer--value{
     color: #293264;
     border: 0.8px solid #4D5B9E;
     font-size: 0.9rem;
     border-radius: 8px;
     padding: 10px 45px;
-}
+} */
 
-.answer--value:hover{
+/* .answer--value:hover{
     color: #293264;
     background-color: #93D7A2;
     border: none;
-}
+} */
 
 .yes{
     color: #293264;
