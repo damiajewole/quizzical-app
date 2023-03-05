@@ -2,7 +2,7 @@ import { nanoid } from 'nanoid';
 import React from 'react';
 import shuffle from "./shuffle";
 import './style.css';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 export default function Questions(props){
     const [options, setOptions] = useState([
@@ -16,11 +16,17 @@ export default function Questions(props){
         setOptions(shuffle(options));
     }, [options]);
 
+    useEffect(() => {
+        const storedAnswer = localStorage.getItem('userAnswer')
+        console.log(storedAnswer)
+    }, [])
+
     function chooseOption(event){
         let chosenOption = event.currentTarget.id
         setUserAnswer(prevAnswer => [
             chosenOption
         ]) 
+        localStorage.setItem('userAnswer', chosenOption)
     }
 
     return(
@@ -28,12 +34,12 @@ export default function Questions(props){
             <h1 className='question'>{props.data.question.replace(/&quot;/g, '"')}</h1>
             <div className="answer">
                 {options.map((opt) =>
-                    <div className={(userAnswer == opt) ? "try yes": "try"} key ={nanoid()}  id={`${opt}`} onClick={chooseOption}>
+                    <div className={(userAnswer == opt) ? "try yes": "try"} key ={nanoid()} id={`${opt}`} onClick={chooseOption}>
                         <p className="answer--value" >{opt.replace(/&quot;/g, '"')} </p>
                     </div>
                 )}
             </div>
-            {props.handleCallback(userAnswer)}
+            {/* {props.handleCallback(userAnswer)} */}
         </div>
     )
 }
