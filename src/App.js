@@ -1,11 +1,11 @@
-import React from 'react';
-import {useState, useEffect} from 'react';
+import React, { useCallback } from 'react';
+import {useState, useEffect, useRef} from 'react';
 import './style.css';
 import Start from './Start';
 import Questions from './Questions';
 import { nanoid } from 'nanoid'
 
-function App() {
+function App(){
   const [show, setShow] = useState(false)
   const [quizdata, setQuizData] = useState([])
 
@@ -16,17 +16,27 @@ function App() {
   }, [])  
 
   function renderthis(){
-    setShow(true)
+    setShow(!show)
   }
 
+<<<<<<< Updated upstream
   function calculateResult(childData){
     console.log("results calculated")
     console.log(childData)
   }
+=======
+  function setRender(){
+    setClick(true)
+    // console.log()
+  }
+
+  console.log(click, "click")
+>>>>>>> Stashed changes
 
   return (
     <div>
       {show ? 
+<<<<<<< Updated upstream
       <div className="quiz page">
         {quizdata.results.map((data) =>
             <Questions data={data} key ={nanoid()} handleCallback={calculateResult}/>
@@ -36,8 +46,25 @@ function App() {
       : 
       <Start onClick={renderthis} />} 
       
+=======
+        <div className="quiz page">
+          {quizdata.results.map((data) =>
+              <Questions data={data} handleClick={click}/>
+          )}
+          {click ?
+            <div className='result'>
+              <p className="result--display">You have 'placeholder' answers</p>
+              <button className="btn ans" onClick={setRender}>New Game</button>
+            </div>
+            :
+            <button className="btn ans" onClick={setRender}>Check answers</button>
+          }
+        </div>
+        : 
+        <Start onClick={renderthis} />
+      }
+>>>>>>> Stashed changes
     </div>
   )    
 }
-
 export default App;
