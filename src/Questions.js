@@ -17,6 +17,8 @@ const MemoizedQuestions = memo(({data, click, handleAnswer, game}) => {
             data.correct_answer
         ])
     }, [data.correct_answer, game])
+    console.log(data.correct_answer)
+
 
     useMemo(() => {
         setOptions(shuffle(options));
