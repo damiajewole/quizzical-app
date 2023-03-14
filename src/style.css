@@ -77,11 +77,13 @@ body{
     border: 0.8px solid #4D5B9E;
     border-radius: 8px;
     padding: 0 40px;
+    /* border: 1px solid black; */
 }
 
 .try:hover{
-    background-color: #93D7A2;
+    background-color: #b0b7d7;
     border: transparent;
+    /* border: 1px solid black; */
 }
 
 .answer--value{
@@ -91,9 +93,29 @@ body{
     margin: 12px;
 }
 
+.red{
+    color: #C2C4D0;
+}
+
 .yes{
     color: #293264;
-    background-color: #77af83;
+    background-color: #D6DBF5;
+    border: none;
+}
+
+.correct{
+    color: #293264;
+    background-color: #95D7A2;
+    border: none;
+}
+
+.reduce{
+    color: #C2C4D0;
+    border: 0.8px solid #C2C4D0;
+}
+
+.wrong{
+    background-color: #F5D9DD;
     border: none;
 }
 
