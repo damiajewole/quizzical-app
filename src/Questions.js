@@ -5,10 +5,7 @@ import './style.css';
 import { useMemo, useState, memo, useEffect } from 'react';
 
 const MemoizedQuestions = memo(({data, click, handleAnswer, game}) => {
-    const [options, setOptions] = useState([
-        ...data.incorrect_answers,
-        data.correct_answer
-    ])
+    const [options, setOptions] = useState([])
     const [userAnswer, setUserAnswer] = useState(false)
 
     useEffect(() => {
@@ -17,12 +14,11 @@ const MemoizedQuestions = memo(({data, click, handleAnswer, game}) => {
             data.correct_answer
         ])
     }, [data.correct_answer, game])
-    console.log(data.correct_answer)
 
 
     useMemo(() => {
         setOptions(shuffle(options));
-    }, []);
+    }, [options]);
 
     function chooseOption(event){
         let chosenOption = event.currentTarget.id
