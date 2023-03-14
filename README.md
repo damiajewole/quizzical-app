@@ -16,7 +16,7 @@ You may also see any lint errors in the console.
 
 This Web App was created by me, Ajewole Damilola, as the final project of the Scrimba Course - 'Introduction to React'.
 
-It is still under development, as I am not quite done with it. 
+I am officially done! 
 Link - https://quizzical-app-beige.vercel.app/
 
 
