@@ -5,6 +5,7 @@ import './style.css';
 import { useMemo, useState } from 'react';
 
 export default function Questions(props){
+    const parser = new DOMParser();
     const [options, setOptions] = useState([
         ...props.data.incorrect_answers,
         props.data.correct_answer
@@ -35,15 +36,20 @@ export default function Questions(props){
             chosenOption
         ]) 
     }
+    const decodedQuestion = parser.parseFromString(`<!doctype html><body>${props.data.question}`, 'text/html').body.textContent;
 
     return(
         <div>
-            <h1 className='question'>{props.data.question.replace(/&quot;/g, '"')}</h1>
+            <h1 className='question'>{decodedQuestion}</h1>
             <div className="answer">
-                {options.map((opt) =>
-                    <div className={(userAnswer === opt) ? "try yes": "try"} key ={nanoid()}  id={`${opt}`} onClick={chooseOption}>
-                        <p className="answer--value" >{opt.replace(/&quot;/g, '"')} </p>
-                    </div>
+                {options.map((opt) =>{
+                    const decodedOpt = parser.parseFromString(`<!doctype html><body>${opt}`, 'text/html').body.textContent;
+                    return(
+                        <div className={(userAnswer === decodedOpt) ? "try yes": "try"} key ={nanoid()}  id={`${decodedOpt}`} onClick={chooseOption}>
+                            <p className="answer--value" >{decodedOpt} </p>
+                        </div>
+                    )
+                }
                 )}
             </div>
             {props.handleCallback(userAnswer)}

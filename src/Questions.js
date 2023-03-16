@@ -5,6 +5,7 @@ import './style.css';
 import { useMemo, useState, memo, useEffect } from 'react';
 
 const MemoizedQuestions = memo(({data, click, handleAnswer, game}) => {
+    const parser = new DOMParser();
     const [options, setOptions] = useState([])
     const [userAnswer, setUserAnswer] = useState(false)
 
@@ -13,7 +14,7 @@ const MemoizedQuestions = memo(({data, click, handleAnswer, game}) => {
             ...data.incorrect_answers,
             data.correct_answer
         ])
-    }, [data.correct_answer, game])
+    }, [data.correct_answer, data.incorrect_answers, game])
 
 
     useMemo(() => {
@@ -30,23 +31,29 @@ const MemoizedQuestions = memo(({data, click, handleAnswer, game}) => {
         handleAnswer(false);
         }
     }
+    const decodedQuestion = parser.parseFromString(`<!doctype html><body>${data.question}`, 'text/html').body.textContent;
+    
 
     return(
         <div>
-            <h1 className='question'>{data.question.replace(/&quot;/g, '"')}</h1>
+            <h1 className='question'>{decodedQuestion}</h1>
             <div className="answer">
-                {options.map((opt) =>
-                <div className='answer'>
-                    {click ? 
-                    <div className={(data.correct_answer == opt) ? "try correct": ((userAnswer == opt) ? "try wrong": "try reduce")} key ={nanoid()} id={`${opt}`} onClick={chooseOption}>
-                        <p className={(data.correct_answer == opt) ? "answer--value": "answer--value red"} >{opt.replace(/&quot;/g, '"')} </p>
-                    </div>
-                    :
-                    <div className={(userAnswer == opt) ? "try yes": "try"} key ={nanoid()} id={`${opt}`} onClick={chooseOption}>
-                        <p className="answer--value" >{opt.replace(/&quot;/g, '"')} </p>
-                    </div>
-                    }
-                </div>
+                {options.map((opt, i) => {
+                    const decodedOpt = parser.parseFromString(`<!doctype html><body>${opt}`, 'text/html').body.textContent;
+                    return(
+                        <div className='answer' key={i}>
+                            {click ? 
+                            <div className={(data.correct_answer === decodedOpt) ? "try correct": ((userAnswer === decodedOpt) ? "try wrong": "try reduce")} key ={nanoid()} id={`${decodedOpt}`} onClick={chooseOption}>
+                                <p className={(data.correct_answer === decodedOpt) ? "answer--value": "answer--value red"} >{decodedOpt} </p>
+                            </div>
+                            :
+                            <div className={(userAnswer === decodedOpt) ? "try yes": "try"} key ={nanoid()} id={`${decodedOpt}`} onClick={chooseOption}>
+                                <p className="answer--value" >{decodedOpt} </p>
+                            </div>
+                            }
+                        </div>
+                    )
+                }
                 )}
             </div>
         </div>
