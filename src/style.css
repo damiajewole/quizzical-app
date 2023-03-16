@@ -16,7 +16,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     justify-content: center;
 }
 
@@ -39,7 +39,7 @@ body{
     border: none;
     font-size: 1rem;
     margin-top: 20px;
-
+    cursor: pointer;
     transition: all 0.4s ease;
     transform: scale(1);
 }
@@ -77,6 +77,7 @@ body{
     border: 0.8px solid #4D5B9E;
     border-radius: 8px;
     padding: 0 40px;
+    cursor: pointer;
     /* border: 1px solid black; */
 }
 
@@ -129,10 +130,9 @@ hr{
 
 .result{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-self: center;
     margin: 0 auto;
-    gap: 20px;
     justify-content: center;
     text-align: center;
 }
@@ -142,3 +142,56 @@ hr{
     color: #293264;
     font-size: 1.3rem;
 }
+
+.result-prompt{
+    align-self: center;
+    color: #293264;
+    font-size: 1rem;
+    margin-top: -10px;
+}
+
+
+/** Styling for the Modal **/
+.modal-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  
+  .modal-container {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+  }
+  
+  .modal-content {
+    margin-top: 10px;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .modal-btn{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
