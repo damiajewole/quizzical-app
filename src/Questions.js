@@ -37,7 +37,7 @@ const MemoizedQuestions = memo(({data, click, handleAnswer, game}) => {
     return(
         <div>
             <h1 className='question'>{decodedQuestion}</h1>
-            <div className="answer">
+            <div className="answer--div">
                 {options.map((opt, i) => {
                     const decodedOpt = parser.parseFromString(`<!doctype html><body>${opt}`, 'text/html').body.textContent;
                     return(
